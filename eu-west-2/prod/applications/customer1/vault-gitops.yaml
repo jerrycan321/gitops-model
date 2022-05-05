@@ -11,6 +11,11 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: customer1
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+#    - createNamespace=true  # Not working - Issue 4438 ?
   ignoreDifferences:
     - group: admissionregistration.k8s.io
       kind: MutatingWebhookConfiguration
