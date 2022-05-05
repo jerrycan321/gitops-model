@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vault4-argocd
+  namespace: argocd
+spec:
+  project: default
+  source:
+    path: helm-dependency-vault
+    repoURL: https://github.com/jerrycan321/argocd-example-apps.git
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: vault4
+  ignoreDifferences:
+    - group: admissionregistration.k8s.io
+      kind: MutatingWebhookConfiguration
+      jqPathExpressions:
+      - .webhooks[]?.clientConfig.caBundle
