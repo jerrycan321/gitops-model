@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: vault4-argocd
+  name: customer1-argocd
   namespace: argocd
 spec:
   project: default
   source:
-    path: helm-dependency-vault
-    repoURL: https://github.com/jerrycan321/argocd-example-apps.git
+    path: eu-west-2/prod/applications/customer1/config
+    repoURL: https://github.com/jerrycan321/gitops-model.git
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: vault4
+    namespace: customer1
   ignoreDifferences:
     - group: admissionregistration.k8s.io
       kind: MutatingWebhookConfiguration
