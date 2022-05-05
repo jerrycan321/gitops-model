@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: customer2-argocd
+  namespace: argocd
+spec:
+  project: default
+  source:
+    path: eu-west-2/prod/applications/customer2/config
+    repoURL: https://github.com/jerrycan321/gitops-model.git
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: customer2
+  ignoreDifferences:
+    - group: admissionregistration.k8s.io
+      kind: MutatingWebhookConfiguration
+      jqPathExpressions:
+      - .webhooks[]?.clientConfig.caBundle
