@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: customer2-argocd
+  name: customer2-vault
   namespace: argocd
 spec:
   project: default
@@ -11,6 +11,9 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: customer2
+  syncPolicy:
+    automated:
+      prune: true
   ignoreDifferences:
     - group: admissionregistration.k8s.io
       kind: MutatingWebhookConfiguration
