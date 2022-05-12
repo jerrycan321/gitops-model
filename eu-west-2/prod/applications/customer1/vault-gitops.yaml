@@ -13,9 +13,10 @@ spec:
     namespace: customer1
   syncPolicy:
     automated:
+      selfHeal: true
       prune: true
     syncOptions:
-#    - createNamespace=true  # Not working - Issue 4438 ?
+      - createNamespace=true  # Not working - Issue 4438 ?
   ignoreDifferences:
     - group: admissionregistration.k8s.io
       kind: MutatingWebhookConfiguration
