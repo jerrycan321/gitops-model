@@ -16,7 +16,7 @@ spec:
       selfHeal: true
       prune: true
     syncOptions:
-      - createNamespace=true  # Not working - Issue 4438 ?
+      - CreateNamespace=true
   ignoreDifferences:
     - group: admissionregistration.k8s.io
       kind: MutatingWebhookConfiguration
